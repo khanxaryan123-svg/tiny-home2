@@ -1,14 +1,16 @@
 import { Search, Heart, MapPin } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import CustomSelect from '../components/CustomSelect'
 import tinyHome1 from './tiny home 1.jpg'
 import auctionData from '../data/auction.json'
 
 export default function Auction() {
   const [keyword, setKeyword] = useState('')
-  const [propertyFor, setPropertyFor] = useState('Auction')
+  const [propertyFor, setPropertyFor] = useState('')
   const [price, setPrice] = useState('')
   const [type, setType] = useState('')
+  const [propertySize, setPropertySize] = useState('')
   const [zipcode, setZipcode] = useState('')
   const [beds, setBeds] = useState('')
   const [sleeps, setSleeps] = useState('')
@@ -42,14 +44,16 @@ export default function Auction() {
     washerDryer: false,
     offGrid: false,
   })
+
   const toggleAmenity = (key) =>
     setAmenities((prev) => ({ ...prev, [key]: !prev[key] }))
 
   const resetFilters = () => {
     setKeyword('')
-    setPropertyFor('Auction')
+    setPropertyFor('')
     setPrice('')
     setType('')
+    setPropertySize('')
     setZipcode('')
     setBeds('')
     setSleeps('')
@@ -124,10 +128,10 @@ export default function Auction() {
     const sleepsOk = sleeps ? item.sleeps === Number(sleeps) : true
     const priceNum = toNum(item.price)
     let priceOk = true
-    if (price === '0 - 25,000') priceOk = priceNum < 25000
-    else if (price === '25,000 - 50,000') priceOk = priceNum >= 25000 && priceNum <= 50000
-    else if (price === '50,000 - 100,000') priceOk = priceNum > 50000 && priceNum <= 100000
-    else if (price === '100,000+') priceOk = priceNum > 100000
+    if (price === 'Under $50,000') priceOk = priceNum < 50000
+    else if (price === '$50,000 - $100,000') priceOk = priceNum >= 50000 && priceNum <= 100000
+    else if (price === '$100,000 - $150,000') priceOk = priceNum > 100000 && priceNum <= 150000
+    else if (price === '$150,000+') priceOk = priceNum > 150000
     return keywordOk && propertyOk && typeOk && bedsOk && sleepsOk && priceOk
   })
 
@@ -161,119 +165,150 @@ export default function Auction() {
         <div className="text-sm text-gray-500">
           <Link to="/" className="hover:text-gray-700">Home</Link>
           <span> / </span>
-          <span className="text-yellow-600 font-medium">Tiny Homes</span>
+          <span className="text-yellow-600 font-medium">Auctions</span>
         </div>
       </div>
 
       <div className="lg:col-span-3">
-        <h1 className="text-3xl font-semibold text-gray-900">Tiny Homes</h1>
+        <h1 className="text-3xl font-semibold text-[#777777]">Auctions</h1>
       </div>
 
       <aside className="lg:col-span-1">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Keyword</label>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Keyword</label>
             <div className="relative">
               <input
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Keyword"
-                className="w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full pl-10 pr-3 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
               />
-              <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Property For</label>
-            <select
-              value={propertyFor}
-              onChange={(e) => setPropertyFor(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option>Auction</option>
-              <option>Rent</option>
-              <option>Sale</option>
-            </select>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Property For</label>
+            <div className="relative">
+              <select
+                value={propertyFor}
+                onChange={(e) => setPropertyFor(e.target.value)}
+                className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-yellow-500 text-[#777777]"
+              >
+                <option value="">Property For</option>
+                <option>Sale</option>
+                <option>Rent</option>
+                <option>Auction</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                <svg className="w-3 h-3 text-[#777777] fill-current" viewBox="0 0 12 8">
+                  <path d="M1.41 0.590088L6 5.17009L10.59 0.590088L12 2.00009L6 8.00009L0 2.00009L1.41 0.590088Z" />
+                </svg>
+              </div>
+            </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Price ($)</label>
-            <select
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Select Price</option>
-              <option>0 - 25,000</option>
-              <option>25,000 - 50,000</option>
-              <option>50,000 - 100,000</option>
-              <option>100,000+</option>
-            </select>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Price ($)</label>
+            <div className="relative">
+              <select
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-yellow-500 text-[#777777]"
+              >
+                <option value="">Select Price</option>
+                <option>Under $50,000</option>
+                <option>$50,000 - $100,000</option>
+                <option>$100,000 - $150,000</option>
+                <option>$150,000+</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                <svg className="w-3 h-3 text-[#777777] fill-current" viewBox="0 0 12 8">
+                  <path d="M1.41 0.590088L6 5.17009L10.59 0.590088L12 2.00009L6 8.00009L0 2.00009L1.41 0.590088Z" />
+                </svg>
+              </div>
+            </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Property Type</label>
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Property Type</option>
-              <option>Tiny House</option>
-              <option>Container Home</option>
-              <option>Cabin</option>
-              <option>Mobile Home</option>
-            </select>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Property Type</label>
+            <div className="relative">
+              <select
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+                className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-yellow-500 text-[#777777]"
+              >
+                <option value="">Property Type</option>
+                <option>Tiny home</option>
+                <option>Container home</option>
+                <option>Modular home</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                <svg className="w-3 h-3 text-[#777777] fill-current" viewBox="0 0 12 8">
+                  <path d="M1.41 0.590088L6 5.17009L10.59 0.590088L12 2.00009L6 8.00009L0 2.00009L1.41 0.590088Z" />
+                </svg>
+              </div>
+            </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Zipcode</label>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Property Size (SqFt)</label>
+            <div className="relative">
+              <select
+                value={propertySize}
+                onChange={(e) => setPropertySize(e.target.value)}
+                className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-yellow-500 text-[#777777]"
+              >
+                <option value="">Property Size</option>
+                <option>≤ 200</option>
+                <option>200 – 400</option>
+                <option>400 – 600</option>
+                <option>600+</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                <svg className="w-3 h-3 text-[#777777] fill-current" viewBox="0 0 12 8">
+                  <path d="M1.41 0.590088L6 5.17009L10.59 0.590088L12 2.00009L6 8.00009L0 2.00009L1.41 0.590088Z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Zipcode</label>
             <input
               value={zipcode}
               onChange={(e) => setZipcode(e.target.value)}
+              className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
               placeholder="Zipcode"
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Number of Beds</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Number of Beds</label>
+            <CustomSelect
               value={beds}
-              onChange={(e) => setBeds(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Number of Beds</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5+</option>
-            </select>
+              onChange={setBeds}
+              options={['1', '2', '3', '4', '5+']}
+              placeholder="Number of Beds"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Number of Sleeps</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Number of Sleeps</label>
+            <CustomSelect
               value={sleeps}
-              onChange={(e) => setSleeps(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Number of Sleeps</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5+</option>
-            </select>
+              onChange={setSleeps}
+              options={['1', '2', '3', '4', '5+']}
+              placeholder="Number of Sleeps"
+            />
           </div>
 
           <div>
-            <div className="text-sm font-medium text-gray-700 mb-2">Amenities</div>
+            <div className="text-sm font-medium text-[#777777] mb-2">Amenities</div>
             <div className="space-y-2 text-sm">
               {(amenitiesExpanded ? amenityOptions : amenityOptions.slice(0,3)).map(([key,label]) => (
-                <label key={key} className="flex items-center gap-2 text-gray-700">
+                <label key={key} className="flex items-center gap-2 text-[#777777]">
                   <input type="checkbox" checked={amenities[key]} onChange={() => toggleAmenity(key)} className="rounded" />
                   {label}
                 </label>
@@ -288,19 +323,14 @@ export default function Auction() {
             </button>
           </div>
 
-          
-
-          <div className="pt-2 space-y-3">
-            <button type="button" className="w-full py-3 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-white font-medium shadow">
-              Search
-            </button>
-            <button type="button" onClick={resetFilters} className="w-full py-3 rounded-lg border border-yellow-400 text-yellow-600 font-medium shadow">
-              Reset
-            </button>
+          <div className="flex flex-col gap-3 pt-2">
+            <button type="button" className="w-full py-3 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-white font-semibold shadow-sm">Search</button>
+            <button type="button" onClick={resetFilters} className="w-full py-3 rounded-lg border border-yellow-400 text-yellow-400 font-semibold bg-white hover:bg-yellow-50">Reset</button>
           </div>
         </div>
+
         <div className="mt-6 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">Rent Properties</h2>
+          <h2 className="text-lg font-semibold text-[#777777] mb-4">Rent Properties</h2>
           <div className="grid grid-cols-1 gap-6">
             <Link to="/rent/true-north" className="rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-gray-900 block">
               <div className="relative">
@@ -320,12 +350,11 @@ export default function Auction() {
           </div>
           
         </div>
-
       </aside>
 
       <section className="lg:col-span-2 space-y-6">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 flex items-center justify-between">
-          <p className="text-gray-700 font-medium">Search results</p>
+          <p className="text-[#777777] font-medium">Search results</p>
           <div className="flex items-center gap-2 text-sm">
             <span className="text-gray-500">Sort by:</span>
             <select
@@ -340,43 +369,40 @@ export default function Auction() {
             </select>
           </div>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {sortedResults.length === 0 ? (
-            <div className="h-64 flex items-center justify-center text-gray-600 font-semibold md:col-span-2">Tiny Homes Not Found!</div>
-          ) : (
-            sortedResults.map((item, idx) => (
-              <div key={idx} className="rounded-2xl overflow-hidden shadow-sm border border-gray-200 bg-white">
-                <div className="relative">
-                  <img src={tinyHome1} alt={item.title} className="w-full h-48 object-cover" />
-                  <span className="absolute top-3 left-3 bg-yellow-300 text-gray-900 text-xs font-semibold px-3 py-1 rounded-md">Auction</span>
-                  <button type="button" className="absolute bottom-3 right-3 w-9 h-9 rounded-lg bg-black/50 backdrop-blur text-white flex items-center justify-center">
-                    <Heart className="h-5 w-5" />
-                  </button>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-                  <div className="absolute bottom-3 left-3 text-white text-2xl font-bold">{item.price}</div>
+          {sortedResults.map((item, idx) => (
+            <div key={idx} className="rounded-2xl overflow-hidden shadow-sm border border-gray-200 bg-white">
+              <div className="relative">
+                <img src={tinyHome1} alt={item.title} className="w-full h-48 object-cover" />
+                <span className="absolute top-3 left-3 bg-yellow-300 text-gray-900 text-xs font-semibold px-3 py-1 rounded-md">Sale</span>
+                <button type="button" className="absolute bottom-3 right-3 w-9 h-9 rounded-lg bg-black/50 backdrop-blur text-white flex items-center justify-center">
+                  <Heart className="h-5 w-5" />
+                </button>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                <div className="absolute bottom-3 left-3 text-white text-2xl font-bold">{item.price}</div>
+              </div>
+              <div className="p-4">
+                <div className="text-yellow-600 text-sm font-medium mb-1">
+                  Model: <span className="font-semibold uppercase">{item.modelLabel}</span>
                 </div>
-                <div className="p-4">
-                  <div className="text-yellow-600 text-sm font-medium mb-1">
-                    Model: <span className="font-semibold uppercase">{item.modelLabel}</span>
-                  </div>
-                  <div className="text-gray-900 font-semibold">{item.title}</div>
-                  <div className="mt-1 flex items-center gap-2 text-sm text-gray-600">
-                    <MapPin className="h-4 w-4" />
-                    <span>{item.location}</span>
-                  </div>
-                  <div className="mt-3 flex items-center gap-6 text-sm text-gray-800">
-                    <span>Beds: {item.beds}</span>
-                    <span>Sleeps: {item.sleeps}</span>
-                    <span>Kitchen: {item.kitchen}</span>
-                  </div>
-                  <div className="mt-4 border-t border-gray-200 pt-3 text-sm">
-                    <span className="text-yellow-600 font-medium">Listed by:</span>
-                    <span className="ml-1 text-gray-800">{item.agent}</span>
-                  </div>
+                <div className="text-gray-900 font-semibold">{item.title}</div>
+                <div className="mt-1 flex items-center gap-2 text-sm text-gray-600">
+                  <MapPin className="h-4 w-4" />
+                  <span>{item.location}</span>
+                </div>
+                <div className="mt-3 flex items-center gap-6 text-sm text-gray-800">
+                  <span>Beds: {item.beds}</span>
+                  <span>Sleeps: {item.sleeps}</span>
+                  <span>Kitchen: {item.kitchen}</span>
+                </div>
+                <div className="mt-4 border-t border-gray-200 pt-3 text-sm">
+                  <span className="text-yellow-600 font-medium">Listed by:</span>
+                  <span className="ml-1 text-gray-800">{item.agent}</span>
                 </div>
               </div>
-            ))
-          )}
+            </div>
+          ))}
         </div>
       </section>
     </div>

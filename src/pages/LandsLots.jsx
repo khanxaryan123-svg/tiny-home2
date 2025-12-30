@@ -1,6 +1,7 @@
 import { Search, Heart, MapPin } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import CustomSelect from '../components/CustomSelect'
 import tinyHome1 from './tiny home 1.jpg'
 import landsLotsData from '../data/landsLots.json'
 
@@ -73,90 +74,78 @@ export default function LandsLots() {
       </div>
 
       <div className="lg:col-span-3">
-        <h1 className="text-3xl font-semibold text-gray-900">Lands/Lots</h1>
+        <h1 className="text-3xl font-semibold text-[#777777]">Lands/Lots</h1>
       </div>
 
       <aside className="lg:col-span-1">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Keyword</label>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Keyword</label>
             <div className="relative">
               <input
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Keyword"
-                className="w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full pl-10 pr-3 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
               />
-              <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Land For</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Land For</label>
+            <CustomSelect
               value={landFor}
-              onChange={(e) => setLandFor(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Land For</option>
-              <option>Sale</option>
-              <option>Rent</option>
-              <option>Auction</option>
-            </select>
+              onChange={setLandFor}
+              options={['Sale', 'Rent', 'Auction']}
+              placeholder="Land For"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Price ($)</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Price ($)</label>
+            <CustomSelect
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Select Price</option>
-              <option>Under $500,000</option>
-              <option>$500,000 - $1,000,000</option>
-              <option>$1,000,000+</option>
-            </select>
+              onChange={setPrice}
+              options={['Under $500,000', '$500,000 - $1,000,000', '$1,000,000+']}
+              placeholder="Select Price"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Size Unit</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Size Unit</label>
+            <CustomSelect
               value={sizeUnit}
-              onChange={(e) => setSizeUnit(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Size Unit</option>
-              <option>SqFt</option>
-              <option>Acre</option>
-              <option>Hectare</option>
-            </select>
+              onChange={setSizeUnit}
+              options={['SqFt', 'Acre', 'Hectare']}
+              placeholder="Size Unit"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Zipcode</label>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Zipcode</label>
             <input
               value={zipcode}
               onChange={(e) => setZipcode(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
               placeholder="Zipcode"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2 pt-2">
-            <button type="button" className="py-2 px-3 rounded-full bg-yellow-400 hover:bg-yellow-500 text-white font-semibold">Search</button>
-            <button type="button" onClick={resetFilters} className="py-2 px-3 rounded-full border border-gray-300 text-gray-700 font-semibold">Reset</button>
+          <div className="flex flex-col gap-3 pt-2">
+            <button type="button" className="w-full py-3 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-white font-semibold shadow-sm">Search</button>
+            <button type="button" onClick={resetFilters} className="w-full py-3 rounded-lg border border-yellow-400 text-yellow-400 font-semibold bg-white hover:bg-yellow-50">Reset</button>
           </div>
         </div>
 
         <div className="mt-6 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-800">Lands/Lots For Rent</h2>
+          <h2 className="text-lg font-semibold text-[#777777]">Lands/Lots For Rent</h2>
         </div>
       </aside>
 
       <section className="lg:col-span-2 space-y-6">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 flex items-center justify-between">
-          <p className="text-gray-700 font-medium">Search results</p>
+          <p className="text-[#777777] font-medium">Search results</p>
           <div className="flex items-center gap-2 text-sm">
             <span className="text-gray-500">Sort by:</span>
             <select
@@ -186,7 +175,7 @@ export default function LandsLots() {
               </div>
               <div className="p-4">
                 <div className="text-gray-900 font-semibold">{item.title}</div>
-                <div className="mt-2 space-y-1 text-sm text-gray-700">
+                <div className="mt-2 space-y-1 text-sm text-[#777777]">
                   <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /><span>State: {item.state}</span></div>
                   <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /><span>City: {item.city}</span></div>
                   <div className="flex items-start gap-2"><MapPin className="h-4 w-4" /><span>Address: {item.address}</span></div>

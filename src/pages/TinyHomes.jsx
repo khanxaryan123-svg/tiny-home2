@@ -1,8 +1,9 @@
-import { Search, Heart, MapPin } from 'lucide-react'
+﻿import { Search, Heart, MapPin } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import tinyHome1 from './tiny home 1.jpg'
 import tinyHomesData from '../data/tinyHomes.json'
+import CustomSelect from '../components/CustomSelect'
 
 export default function TinyHomes() {
   const [keyword, setKeyword] = useState('')
@@ -169,129 +170,99 @@ export default function TinyHomes() {
       </div>
 
       <div className="lg:col-span-3">
-        <h1 className="text-3xl font-semibold text-gray-900">Tiny Homes</h1>
+        <h1 className="text-3xl font-semibold text-black">Tiny Homes</h1>
       </div>
 
       <aside className="lg:col-span-1">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Keyword</label>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Keyword</label>
             <div className="relative">
               <input
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Keyword"
-                className="w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full pl-10 pr-3 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
               />
-              <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Property For</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Property For</label>
+            <CustomSelect
               value={propertyFor}
-              onChange={(e) => setPropertyFor(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Property For</option>
-              <option>Sale</option>
-              <option>Rent</option>
-              <option>Auction</option>
-            </select>
+              onChange={setPropertyFor}
+              options={['Sale', 'Rent', 'Auction']}
+              placeholder="Property For"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Price ($)</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Price ($)</label>
+            <CustomSelect
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Select Price</option>
-              <option>Under $50,000</option>
-              <option>$50,000 - $100,000</option>
-              <option>$100,000 - $150,000</option>
-              <option>$150,000+</option>
-            </select>
+              onChange={setPrice}
+              options={['Under $50,000', '$50,000 - $100,000', '$100,000 - $150,000', '$150,000+']}
+              placeholder="Select Price"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Property Type</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Property Type</label>
+            <CustomSelect
               value={type}
-              onChange={(e) => setType(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Property Type</option>
-              <option>Tiny home</option>
-              <option>Container home</option>
-              <option>Modular home</option>
-            </select>
+              onChange={setType}
+              options={['Tiny home', 'Container home', 'Modular home']}
+              placeholder="Property Type"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Property Size (SqFt)</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Property Size (SqFt)</label>
+            <CustomSelect
               value={propertySize}
-              onChange={(e) => setPropertySize(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Property Size</option>
-              <option>≤ 200</option>
-              <option>200 – 400</option>
-              <option>400 – 600</option>
-              <option>600+</option>
-            </select>
+              onChange={setPropertySize}
+              options={['≤ 200', '200 – 400', '400 – 600', '600+']}
+              placeholder="Property Size"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Zipcode</label>
+            <label className="block text-sm font-medium text-[#777777] mb-2">Zipcode</label>
             <input
               value={zipcode}
               onChange={(e) => setZipcode(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
               placeholder="Zipcode"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Number of Beds</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Number of Beds</label>
+            <CustomSelect
               value={beds}
-              onChange={(e) => setBeds(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Number of Beds</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5+</option>
-            </select>
+              onChange={setBeds}
+              options={['1', '2', '3', '4', '5+']}
+              placeholder="Number of Beds"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Number of Sleeps</label>
-            <select
+            <label className="block text-sm font-medium text-[#777777] mb-2">Number of Sleeps</label>
+            <CustomSelect
               value={sleeps}
-              onChange={(e) => setSleeps(e.target.value)}
-              className="w-full py-2 px-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="">Number of Sleeps</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5+</option>
-            </select>
+              onChange={setSleeps}
+              options={['1', '2', '3', '4', '5+']}
+              placeholder="Number of Sleeps"
+            />
           </div>
 
           <div>
-            <div className="text-sm font-medium text-gray-700 mb-2">Amenities</div>
+            <div className="text-sm font-medium text-[#777777] mb-2">Amenities</div>
             <div className="space-y-2 text-sm">
               {(amenitiesExpanded ? amenityOptions : amenityOptions.slice(0,3)).map(([key,label]) => (
-                <label key={key} className="flex items-center gap-2 text-gray-700">
+                <label key={key} className="flex items-center gap-2 text-[#777777]">
                   <input type="checkbox" checked={amenities[key]} onChange={() => toggleAmenity(key)} className="rounded" />
                   {label}
                 </label>
@@ -306,14 +277,14 @@ export default function TinyHomes() {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 pt-2">
-            <button type="button" className="py-2 px-3 rounded-full bg-yellow-400 hover:bg-yellow-500 text-white font-semibold">Search</button>
-            <button type="button" onClick={resetFilters} className="py-2 px-3 rounded-full border border-gray-300 text-gray-700 font-semibold">Reset</button>
+          <div className="flex flex-col gap-3 pt-2">
+            <button type="button" className="w-full py-3 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-white font-semibold shadow-sm">Search</button>
+            <button type="button" onClick={resetFilters} className="w-full py-3 rounded-lg border border-yellow-400 text-yellow-400 font-semibold bg-white hover:bg-yellow-50">Reset</button>
           </div>
         </div>
 
         <div className="mt-6 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">Rent Properties</h2>
+          <h2 className="text-lg font-semibold text-[#777777] mb-4">Rent Properties</h2>
           <div className="grid grid-cols-1 gap-6">
             <Link to="/rent/true-north" className="rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-gray-900 block">
               <div className="relative">
@@ -337,7 +308,7 @@ export default function TinyHomes() {
 
       <section className="lg:col-span-2 space-y-6">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 flex items-center justify-between">
-          <p className="text-gray-700 font-medium">Search results</p>
+          <p className="text-[#777777] font-medium">Search results</p>
           <div className="flex items-center gap-2 text-sm">
             <span className="text-gray-500">Sort by:</span>
             <select

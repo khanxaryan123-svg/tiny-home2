@@ -7,7 +7,7 @@ const Header = () => {
   const location = useLocation();
 
   const navLinkClass = (path, highlight = false) =>
-    `${highlight ? 'text-gray-900' : 'text-gray-700'} font-medium px-4 py-2 transition-colors ${
+    `${highlight ? 'text-gray-900' : 'text-[#777777]'} font-medium px-4 py-2 transition-colors ${
       location.pathname === path
         ? 'rounded-full bg-cyan-50 ring-2 ring-cyan-300/40 shadow-md shadow-cyan-200/60'
         : ''
@@ -50,11 +50,11 @@ const Header = () => {
       {isMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100">
           <div className="container mx-auto px-4 py-2 flex flex-col gap-2">
-            <Link to="/tradeshow" className="py-2 text-gray-700 font-medium">Tradeshow</Link>
-            <Link to="/auction" className="py-2 text-gray-700 font-medium">Auction</Link>
-            <Link to="/tiny-homes" className="py-2 text-gray-700 font-medium">Tiny Homes</Link>
-            <Link to="/lands-lots" className="py-2 text-gray-700 font-medium">Lands/Lots</Link>
-            <Link to="/marketplace" className="py-2 text-gray-700 font-medium">World of Tiny Homes MARKETPLACE</Link>
+            <Link to="/tradeshow" className="py-2 text-[#777777] font-medium">Tradeshow</Link>
+            <Link to="/auction" className="py-2 text-[#777777] font-medium">Auction</Link>
+            <Link to="/tiny-homes" className="py-2 text-[#777777] font-medium">Tiny Homes</Link>
+            <Link to="/lands-lots" className="py-2 text-[#777777] font-medium">Lands/Lots</Link>
+            <Link to="/marketplace" className="py-2 text-[#777777] font-medium">World of Tiny Homes MARKETPLACE</Link>
             <Link to="/account" className="mt-2 flex items-center gap-2 bg-yellow-400 text-white px-4 py-2 rounded-full font-medium w-fit">
               <User className="h-5 w-5" /> My Account
             </Link>
