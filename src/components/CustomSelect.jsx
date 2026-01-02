@@ -39,7 +39,7 @@ const CustomSelect = ({
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full py-3 px-4 text-left bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 flex items-center justify-between ${className}`}
       >
-        <span className={`block truncate ${!value ? 'text-[#777777]' : 'text-[#777777]'}`}>
+        <span className={`block truncate ${!value ? 'text-[#777777]' : 'text-black'}`}>
           {getLabel(value)}
         </span>
         <span className="pointer-events-none flex items-center">
@@ -71,7 +71,7 @@ const CustomSelect = ({
              return (
               <div
                 key={index}
-                className="cursor-pointer select-none relative py-2 pl-3 pr-9 text-[#777777] hover:bg-gray-100"
+                className="cursor-pointer select-none relative py-2 pl-3 pr-9 text-black hover:bg-gray-100"
                 onClick={() => handleSelect(optValue)}
               >
                 <span className={`block truncate ${isSelected ? 'font-semibold' : 'font-normal'}`}>
