@@ -259,7 +259,7 @@ export default function Auction() {
             <CustomSelect
               value={sleeps}
               onChange={setSleeps}
-              options={['1', '2', '3', '4', '5+']}
+              options={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
               placeholder="Number of Sleeps"
             />
           </div>
