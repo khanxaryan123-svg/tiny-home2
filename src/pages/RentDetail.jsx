@@ -280,49 +280,16 @@ export default function RentDetail() {
       <section>
         <h3 className="text-2xl font-semibold text-gray-900 mb-4">Similar Tiny Homes</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[{
-            price: '$52,800.00',
-            badge: 'Sale',
-            model: "Model: 20'",
-            title: "ALT 20' Container Tiny House",
-            location: '6500 West Richmar Avenue, Las Vegas, NV, USA',
-            beds: 1,
-            sleeps: 2,
-            kitchen: 1,
-            agent: 'Trypto Business Solutions',
-            image: tinyHome1,
-          }, {
-            price: '$90,200.00',
-            badge: 'Sale',
-            model: "Model: 40'",
-            title: "ALT 40' Container Tiny House",
-            location: '6500 West Richmar Avenue, Las Vegas, NV, USA',
-            beds: 2,
-            sleeps: 4,
-            kitchen: 1,
-            agent: 'Trypto Business Solutions',
-            image: tinyHome1,
-          }, {
-            price: '$33,000.00',
-            badge: 'Sale',
-            model: 'Model: Boneyard',
-            title: 'Mendo Tiny Homes - Boneyard Shell',
-            location: 'Ukiah, CA, USA',
-            beds: 1,
-            sleeps: 2,
-            kitchen: 1,
-            agent: 'Trypto Business Solutions',
-            image: tinyHome1,
-          }].map((item, idx) => (
+          {similarHomes.map((item, idx) => (
             <div key={idx} className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
               <div className="relative">
-                <img src={item.image} alt={item.title} className="w-full h-40 object-cover" />
-                <span className="absolute top-3 left-3 bg-[#F5A623] text-white text-xs font-medium px-3 py-1 rounded-md shadow-sm">{item.badge}</span>
+                <img src={tinyHome1} alt={item.title} className="w-full h-40 object-cover" />
+                <span className="absolute top-3 left-3 bg-[#F5A623] text-white text-xs font-medium px-3 py-1 rounded-md shadow-sm">Sale</span>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
                 <div className="absolute bottom-3 left-3 text-white text-2xl font-bold">{item.price}</div>
               </div>
               <div className="p-4">
-                <div className="text-yellow-600 text-sm font-medium mb-1">{item.model}</div>
+                <div className="text-yellow-600 text-sm font-medium mb-1">{item.modelLabel}</div>
                 <div className="text-gray-900 font-semibold">{item.title}</div>
                 <div className="mt-1 flex items-center gap-2 text-sm text-gray-600">
                   <MapPin className="h-4 w-4" />
