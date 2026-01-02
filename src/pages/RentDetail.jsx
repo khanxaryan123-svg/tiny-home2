@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { MapPin, Mail, Phone, User as UserIcon, Ruler, Home, Calendar, Building2, Users, Bed, CookingPot, ListChecks, Facebook, Linkedin, MessageCircle, PencilRuler, X, Wind, Fan, Armchair, Trees, Hammer, WashingMachine, Refrigerator, Utensils, Factory, Square, Sofa, Library, Heater, AirVent, Frame, ChefHat } from 'lucide-react'
+import { MapPin, Mail, Phone, User as UserIcon, Ruler, Home, Calendar, Building2, Users, Bed, CookingPot, ListChecks, Facebook, Linkedin, MessageCircle, PencilRuler, X, Wind, Fan, Armchair, Trees, Hammer, WashingMachine, Refrigerator, Utensils, Factory, Square, Sofa, Library, Heater, AirVent, Frame, ChefHat, Bus, Container, BedDouble, IdCard } from 'lucide-react'
 import tinyHome1 from './tiny home 1.jpg'
 import rentDetailData from '../data/rentDetail.json'
 import tinyHomesData from '../data/tinyHomes.json'
@@ -163,21 +163,21 @@ export default function RentDetail() {
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <Building2 className="h-6 w-6 text-gray-500 mt-1" />
+              <Container className="h-6 w-6 text-gray-500 mt-1" />
               <div>
                 <div className="text-gray-500 text-sm mb-1">Make :</div>
                 <div className="font-bold text-gray-900 text-lg">{data.details.make}</div>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <ListChecks className="h-6 w-6 text-gray-500 mt-1" />
+              <Bus className="h-6 w-6 text-gray-500 mt-1" />
               <div>
                 <div className="text-gray-500 text-sm mb-1">Model :</div>
                 <div className="font-bold text-gray-900 text-lg">{data.details.model}</div>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <Bed className="h-6 w-6 text-gray-500 mt-1" />
+              <BedDouble className="h-6 w-6 text-gray-500 mt-1" />
               <div>
                 <div className="text-gray-500 text-sm mb-1">Sleeps :</div>
                 <div className="font-bold text-gray-900 text-lg">{data.details.sleeps}</div>
