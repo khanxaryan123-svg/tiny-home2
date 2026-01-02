@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <header className="bg-white border-b shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-3">
+      <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
             <Home className="h-9 w-9 text-yellow-500" />
@@ -49,7 +49,7 @@ const Header = () => {
 
       {isMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100">
-          <div className="container mx-auto px-4 py-2 flex flex-col gap-2">
+          <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col gap-2">
             <Link to="/tradeshow" className="py-2 text-[#777777] font-medium">Tradeshow</Link>
             <Link to="/auction" className="py-2 text-[#777777] font-medium">Auction</Link>
             <Link to="/tiny-homes" className="py-2 text-[#777777] font-medium">Tiny Homes</Link>
