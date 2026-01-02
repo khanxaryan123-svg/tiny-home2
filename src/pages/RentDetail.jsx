@@ -22,7 +22,14 @@ export default function RentDetail() {
   const { id } = useParams()
   const [isExpanded, setIsExpanded] = useState(false)
   const [showAllAmenities, setShowAllAmenities] = useState(false)
+  const [showGallery, setShowGallery] = useState(false)
   const data = rentDetailData.find(item => item.id === id) || rentDetailData[0]
+  
+  const allImages = [
+    tinyHome1, tinyHome2, tinyHome3, tinyHome4, tinyHome5, 
+    tinyHome6, tinyHome7, tinyHome8, tinyHome9, tinyHome10,
+    tinyHome11, tinyHome12, tinyHome13
+  ]
   
   // Get similar homes (first 3 from tinyHomesData)
   const similarHomes = tinyHomesData.slice(0, 3)
@@ -78,7 +85,10 @@ export default function RentDetail() {
             <div className="rounded-xl overflow-hidden cursor-pointer hover:opacity-95 transition-opacity">
               <img src={tinyHome4} alt="Interior view 2" className="w-full h-full object-cover" />
             </div>
-            <div className="relative rounded-xl overflow-hidden cursor-pointer group">
+            <div 
+              className="relative rounded-xl overflow-hidden cursor-pointer group"
+              onClick={() => setShowGallery(true)}
+            >
               <img src={tinyHome5} alt="More photos" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-medium text-lg backdrop-blur-[2px] group-hover:bg-black/60 transition-colors">
                 +8 more
@@ -329,6 +339,29 @@ export default function RentDetail() {
           ))}
         </div>
       </section>
+
+      {showGallery && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-full h-full max-w-7xl relative flex flex-col">
+            <button 
+              onClick={() => setShowGallery(false)}
+              className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-50 backdrop-blur-md"
+            >
+              <X className="h-8 w-8" />
+            </button>
+            
+            <div className="flex-1 overflow-y-auto p-4 md:p-12 custom-scrollbar">
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                 {allImages.map((img, idx) => (
+                   <div key={idx} className="aspect-video rounded-xl overflow-hidden bg-gray-900 shadow-lg group">
+                     <img src={img} alt={`Gallery image ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                   </div>
+                 ))}
+               </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {showAllAmenities && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
