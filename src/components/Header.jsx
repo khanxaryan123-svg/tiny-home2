@@ -30,10 +30,10 @@ const Header = () => {
             <Link to="/auction" className={navLinkClass('/auction')}>Auction</Link>
             <Link to="/tiny-homes" className={navLinkClass('/tiny-homes')}>Tiny Homes</Link>
             <Link to="/lands-lots" className={navLinkClass('/lands-lots')}>Lands/Lots</Link>
-            <Link to="/financing" className={navLinkClass('/financing')}>Financing</Link>
-            <Link to="/sell" className={navLinkClass('/sell')}>Sell Your Home</Link>
-            <button className="bg-yellow-400 text-white px-5 py-2 rounded-full font-medium hover:bg-yellow-500 transition-colors shadow-sm">
-              Sign In
+            <Link to="/marketplace" className={navLinkClass('/marketplace')}>World of Tiny Homes MARKETPLACE</Link>
+            <button className="bg-yellow-400 text-white px-5 py-2 rounded-full font-medium hover:bg-yellow-500 transition-colors shadow-sm flex items-center gap-2">
+              <User className="h-5 w-5" />
+              My Account
             </button>
           </nav>
 
