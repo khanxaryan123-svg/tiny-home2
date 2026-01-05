@@ -199,8 +199,8 @@ export default function LandsLots() {
                   <div className="text-gray-900 font-semibold text-lg group-hover:text-yellow-600 transition-colors mb-3">{item.title}</div>
                   <div className="space-y-3 text-base">
                     <div className="flex items-center gap-6">
-                      <span><span className="text-gray-500 font-semibold">State:</span> <span className="text-gray-800">{item.state}</span></span>
-                      <span><span className="text-gray-500 font-semibold">City:</span> <span className="text-gray-800">{item.city}</span></span>
+                      <span><span className="text-gray-500 font-semibold">State:</span> <span className="text-gray-500">{item.state}</span></span>
+                      <span><span className="text-gray-500 font-semibold">City:</span> <span className="text-gray-500">{item.city}</span></span>
                     </div>
                     <div>
                       <span className="text-gray-500 font-semibold">Address:</span> <span className="text-gray-500">{item.address}</span>
