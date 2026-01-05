@@ -31,7 +31,7 @@ const Header = () => {
             <Link to="/tiny-homes" className={navLinkClass('/tiny-homes')}>Tiny Homes</Link>
             <Link to="/lands-lots" className={navLinkClass('/lands-lots')}>Lands/Lots</Link>
             <Link to="/marketplace" className={navLinkClass('/marketplace')}>World of Tiny Homes MARKETPLACE</Link>
-            <button className="bg-yellow-400 text-white px-5 py-2 rounded-full font-medium hover:bg-yellow-500 transition-colors shadow-sm flex items-center gap-2">
+            <button className="bg-[#F5A623] text-white px-5 py-2 rounded-full font-medium hover:bg-[#E09612] transition-colors shadow-[0_0_14px_rgba(255,105,180,0.25)] flex items-center gap-2">
               <User className="h-5 w-5" />
               My Account
             </button>
@@ -54,7 +54,7 @@ const Header = () => {
             <Link to="/tiny-homes" className="py-2 text-[#777777] font-medium">Tiny Homes</Link>
             <Link to="/lands-lots" className="py-2 text-[#777777] font-medium">Lands/Lots</Link>
             <Link to="/marketplace" className="py-2 text-[#777777] font-medium">World of Tiny Homes MARKETPLACE</Link>
-            <Link to="/account" className="mt-2 flex items-center gap-2 bg-yellow-400 text-white px-4 py-2 rounded-full font-medium w-fit">
+            <Link to="/account" className="mt-2 flex items-center gap-2 bg-[#F5A623] text-white px-4 py-2 rounded-full font-medium w-fit hover:bg-[#E09612] transition-colors shadow-[0_0_14px_rgba(255,105,180,0.25)]">
               <User className="h-5 w-5" /> My Account
             </Link>
           </div>
