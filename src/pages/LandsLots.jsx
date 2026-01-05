@@ -197,14 +197,14 @@ export default function LandsLots() {
                 </div>
                 <div className="p-4">
                   <div className="text-gray-900 font-semibold group-hover:text-yellow-600 transition-colors">{item.title}</div>
-                  <div className="mt-2 space-y-1 text-sm text-[#777777]">
-                    <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /><span>State: {item.state}</span></div>
-                    <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /><span>City: {item.city}</span></div>
-                    <div className="flex items-start gap-2"><MapPin className="h-4 w-4" /><span>Address: {item.address}</span></div>
-                  </div>
-                  <div className="mt-4 border-t border-gray-200 pt-3 text-sm flex flex-col gap-1">
-                    <span className="text-yellow-600 font-medium">Listed by:</span>
-                    <span className="text-gray-800">{item.listedBy}</span>
+                  <div className="mt-2 space-y-2 text-sm">
+                    <div className="flex items-center gap-6">
+                      <span><span className="text-gray-500 font-semibold">State:</span> <span className="text-gray-800">{item.state}</span></span>
+                      <span><span className="text-gray-500 font-semibold">City:</span> <span className="text-gray-800">{item.city}</span></span>
+                    </div>
+                    <div>
+                      <span className="text-gray-500 font-semibold">Address:</span> <span className="text-gray-800">{item.address}</span>
+                    </div>
                   </div>
                 </div>
               </div>
