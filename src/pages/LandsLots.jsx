@@ -203,7 +203,7 @@ export default function LandsLots() {
                       <span><span className="text-gray-500 font-semibold">City:</span> <span className="text-gray-800">{item.city}</span></span>
                     </div>
                     <div>
-                      <span className="text-gray-500 font-semibold">Address:</span> <span className="text-gray-800">{item.address}</span>
+                      <span className="text-gray-500 font-semibold">Address:</span> <span className="text-gray-500">{item.address}</span>
                     </div>
                   </div>
                 </div>
