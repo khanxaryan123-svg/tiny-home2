@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CustomSelect from '../components/CustomSelect'
 import tinyHome1 from './tiny home 1.jpg'
+import tinyHome14 from './tiny home 14.jpg'
+import tinyHome15 from './tiny home 15.jpeg'
 import landsLotsData from '../data/landsLots.json'
 import rentDetailData from '../data/rentDetail.json'
 
@@ -185,7 +187,7 @@ export default function LandsLots() {
             <Link to={`/property/${item.id}`} key={idx} className="block group">
               <div className="rounded-2xl overflow-hidden shadow-sm border border-gray-200 bg-white hover:shadow-md transition-shadow h-full">
                 <div className="relative">
-                  <img src={tinyHome1} alt={item.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <img src={[tinyHome14, tinyHome15][idx] || tinyHome1} alt={item.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
                   <span className="absolute top-3 left-3 bg-[#F5A623] text-white text-sm font-medium px-4 py-1.5 rounded-lg shadow-sm">Sale</span>
                   <button type="button" className="absolute bottom-3 right-3 w-9 h-9 rounded-lg bg-black/50 backdrop-blur text-white flex items-center justify-center z-10 hover:bg-black/70">
                     <Heart className="h-5 w-5" />
