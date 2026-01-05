@@ -182,12 +182,12 @@ export default function LandsLots() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-8">
           {sortedResults.map((item, idx) => (
             <Link to={`/property/${item.id}`} key={idx} className="block group">
               <div className="rounded-2xl overflow-hidden shadow-sm border border-gray-200 bg-white hover:shadow-md transition-shadow h-full">
                 <div className="relative">
-                  <img src={[tinyHome14, tinyHome15][idx] || tinyHome1} alt={item.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <img src={[tinyHome14, tinyHome15][idx] || tinyHome1} alt={item.title} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
                   <span className="absolute top-3 left-3 bg-[#F5A623] text-white text-sm font-medium px-4 py-1.5 rounded-lg shadow-sm">Sale</span>
                   <button type="button" className="absolute bottom-3 right-3 w-9 h-9 rounded-lg bg-black/50 backdrop-blur text-white flex items-center justify-center z-10 hover:bg-black/70">
                     <Heart className="h-5 w-5" />
@@ -195,9 +195,9 @@ export default function LandsLots() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none"></div>
                   <div className="absolute bottom-3 left-3 text-white text-2xl font-bold">{item.price}</div>
                 </div>
-                <div className="p-4">
-                  <div className="text-gray-900 font-semibold group-hover:text-yellow-600 transition-colors">{item.title}</div>
-                  <div className="mt-2 space-y-2 text-sm">
+                <div className="p-6">
+                  <div className="text-gray-900 font-semibold text-lg group-hover:text-yellow-600 transition-colors mb-3">{item.title}</div>
+                  <div className="space-y-3 text-base">
                     <div className="flex items-center gap-6">
                       <span><span className="text-gray-500 font-semibold">State:</span> <span className="text-gray-800">{item.state}</span></span>
                       <span><span className="text-gray-500 font-semibold">City:</span> <span className="text-gray-800">{item.city}</span></span>
@@ -210,6 +210,16 @@ export default function LandsLots() {
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="flex justify-center items-center gap-2 pt-8 pb-4">
+          <button className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          </button>
+          <button className="w-10 h-10 rounded-full bg-[#F5A623] text-white font-medium flex items-center justify-center shadow-md">1</button>
+          <button className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </button>
         </div>
       </section>
     </div>
